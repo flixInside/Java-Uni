@@ -12,6 +12,7 @@ import java.util.TreeMap;
  *
  * @author felix
  */
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection"})
 public class Maps {
 
     //declare two Maps with keys from type String and values from type Integer
