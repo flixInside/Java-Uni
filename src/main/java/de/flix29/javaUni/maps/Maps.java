@@ -1,4 +1,4 @@
-package de.flix29.javaUni;
+package de.flix29.javaUni.maps;
 
 import java.util.HashMap;
 import java.util.Map;
