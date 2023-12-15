@@ -14,6 +14,9 @@ import java.util.TreeMap;
  */
 public class Maps {
 
+    private Map<?, ?> hashMap;
+    private Map<?, ?> treeMap;
+
     public Maps() {
 
     }
@@ -27,9 +30,9 @@ public class Maps {
      */
     public void initalizeMaps() {
         //initialize a Map as a hashMap
-        Map<?, ?> hashMap = new HashMap<>();
+        hashMap = new HashMap<>();
 
         //initialize a Map as a treeMap
-        Map<?, ?> treeMap = new TreeMap<>();
+        treeMap = new TreeMap<>();
     }
 }
