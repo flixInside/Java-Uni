@@ -42,7 +42,18 @@ public class Maps {
     }
 
     /**
-     *
+     * Diese Methode zeigt, welche verschiedenen Möglichkeiten es gibt Einträge in eine Map hinzuzufügen
+     * <ul>
+     *     <li>Die Methode {@link Map#put(Object, Object)} fügt ein Eintrag der Map hinzu. Der erste Parameter ist
+     *      der Key und der zweite der Value. Ist der Key bereits in der Map vorhanden wird der alte Value mit dem des
+     *      übergebenen Value überschrieben. Der vorherige Value wird zurückgegeben oder null wenn kein vorheriger Value
+     *      existiert.</li>
+     *     <li>Die Methode {@link Map#putAll(Map)} fügt alle Elemente, der als Parameter übergebene Map,
+     *      der Map hinzu. Auch hier können unter Umständen Values überschrieben.</li>
+     *     <li>Die Methode {@link Map#putIfAbsent(Object, Object)} fügt nur einen neuen Eintrag der Map hinzu,
+     *      wenn der Key noch nicht in der Map existiert. Der vorherige Value wird zurückgegeben oder null wenn kein
+     *      vorheriger Value existiert.</li>
+     * </ul>
      */
     public void addEntriesToMap() {
         //fügt Schlüssel-Werte Paare hinzu
@@ -61,9 +72,19 @@ public class Maps {
 
         //fügt Paare nur hinzu, wenn der Schlüssel noch nicht vorhanden ist
         hashMap.putIfAbsent("vier", 5); // wird nicht hinzugefügt
-        hashMap.putIfAbsent("sechs", 6); // wird hinzugefügt
+        Integer sechs = hashMap.putIfAbsent("sechs", 6);// wird hinzugefügt
     }
 
+    /**
+     * Diese Methode zeigt, wie Werte aus einer Map ausgelesen werden könne.
+     * <ul>
+     *     <li>Die Methode {@link Map#get(Object)} gibt den Wert, der mit dem, als Parameter übergebenen, Key assoziiert
+     *      ist.</li>
+     *     <li>Die Methode {@link Map#getOrDefault(Object, Object)} gibt den Wert, der mit dem, als Parameter übergebenen,
+     *      Key assoziiert ist oder wenn dieser Key nicht vorhanden ist, wird der Wert der als zweiter Parameter übergeben
+     *      wird, zurückgegeben.</li>
+     * </ul>
+     */
     public void getValuesFromMap() {
         Integer eins = hashMap.get("eins"); // wird gefunden
         Integer nullValueAsKey = hashMap.get(null); //wird gefunden; null
@@ -73,6 +94,15 @@ public class Maps {
         Integer nichtGefundenDefault = hashMap.getOrDefault("abc", 1);
     }
 
+    /**
+     * Diese Methode zeigt, wie geprüft werden kann, ob Keys oder Werte in einer Map vorhanden sind.
+     * <ul>
+     *     <li>Die Methode {@link Map#containsKey(Object)} gibt true oder false zurück, je nachdem ob der übergebende
+     *      Key in der Map vorhanden ist.</li>
+     *     <li>Die Methode {@link Map#containsValue(Object)} gibt true oder false zurück, je nachdem ob der übergebende
+     *      Value in der Map vorhanden ist.</li>
+     * </ul>
+     */
     public void checkIfKeyOrValueIsInMap() {
         boolean eins = hashMap.containsKey("eins"); //true
         boolean nichtInMap = hashMap.containsKey("abc"); //false
@@ -81,6 +111,14 @@ public class Maps {
         boolean valueNichtInMap = hashMap.containsValue(9); //false
     }
 
+    /**
+     * Diese Methode zeigt, wie Werte aus einer Map entfernt werden könne.
+     * <ul>
+     *     <li>Die Methode {@link Map#remove(Object)} entfernt den Eintrag mit dem übergebenen Key aus der Map und gibt
+     *      den Value zurück. Wenn der Key nicht in der Map existiert wird null zurückgegeben.</li>
+     *     <li>Die Methode {@link Map#clear()} entfernt alle Einträge aus der Map.</li>
+     * </ul>
+     */
     public void removeEntries() {
         // entfernt den Eintrag mit dem Key eins und returnt den Value
         Integer eins = hashMap.remove("eins");
