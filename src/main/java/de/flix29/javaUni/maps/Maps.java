@@ -1,13 +1,18 @@
 package de.flix29.javaUni.maps;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.function.BiConsumer;
 
 /**
  * Diese Klasse zeigte verschiedene Funktionalitäten der Klasse {@link Map}
  * <ul>
  *     <li>{@link #initializeMaps()} initialisierung von Maps</li>
+ *     <li>{@link #addEntriesToMap()} einfügen von Einträgen in Maps</li>
+ *     <li>{@link #getValuesFromMap()} auslesen von Einträgen aus Maps</li>
+ *     <li>{@link #checkIfKeyOrValueIsInMap()} überprüfen ob Einträgen in Maps vorhanden sind</li>
+ *     <li>{@link #removeEntries()} entfernen von Einträgen aus Maps</li>
+ *     <li>{@link #setsFromMaps()} entfernen von Einträgen aus Maps</li>
+ *     <li>{@link #forEachMethods()} möglichkeiten Maps zu durchsuchen</li>
  * </ul>
  *
  * @author felix
@@ -20,7 +25,9 @@ public class Maps {
     private Map<String, Integer> treeMap;
 
     public Maps() {
-
+        initializeMaps();
+        addEntriesToMap();
+        forEachMethods();
     }
 
     /**
@@ -121,10 +128,69 @@ public class Maps {
      */
     public void removeEntries() {
         // entfernt den Eintrag mit dem Key eins und returnt den Value
-        Integer eins = hashMap.remove("eins");
+        Integer eins = hashMap.remove(null);
         // tut nichts und returnt null
         Integer nichtGefunden = hashMap.remove("abc");
 
         hashMap.clear(); // löscht alle Einträge
+    }
+
+    /**
+     * Diese Methode zeigt, welche Möglichkeiten es gibt alle Keys und Values aus der Map zu erhalten
+     * <ul>
+     *     <li>Die Methode {@link Map#entrySet()} gibt ein {@link Set} mit Eintragen vom Typ {@link java.util.Map.Entry}
+     *      zurück. Die Entries in dem Set sind die Entries aus der Map. Ein Entry hat zwei Attribute, einen Key und den
+     *      Value.</li>
+     *     <li>Die Methode {@link Map#keySet()} gibt ein {@link Set} mit allen Keys der Map zurück.</li>
+     *     <li>Die Methode {@link Map#values()} gibt eine {@link Collection} mit allen Values der Map zurück.</li>
+     * </ul>
+     */
+    public void setsFromMaps() {
+        //set mit entries aus der Map
+        Set<Map.Entry<String, Integer>> entries = hashMap.entrySet();
+        //set mit Keys aus der Map
+        Set<String> strings = hashMap.keySet();
+        //collection mit values aus der Map
+        Collection<Integer> values = hashMap.values();
+    }
+
+    /**
+     * Diese Methode zeigt, welche Möglichkeiten es gibt mittels for-Schleifen durch Maps zu iterieren
+     * <ul>
+     *     <li>Die erste for-Schleife iteriert über das EntrySet {@link Map#entrySet()}.</li>
+     *     <li>Die zweite for-Schleife iteriert über das KeySet {@link Map#keySet()}.</li>
+     *     <li>Die dritte for-Schleife iteriert über die Values {@link Map#values()}.</li>
+     *     <li>Die vierte for-Schleife nutzt die Methode {@link Map#forEach(BiConsumer)} um über den definierten key,
+     *      und Value zu iterieren.</li>
+     * </ul>
+     */
+    public void forEachMethods() {
+        for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
+            String key = entry.getKey();
+            Integer value = entry.getValue();
+            if(key != null && key.equals("eins")) {
+                entry.setValue(2); //setzt den Value vom Key 'eins' zu 2
+            }
+        }
+
+        boolean containsDreiKey = false;
+        for (String key : hashMap.keySet()) {
+            if (key != null && key.equals("drei")) {
+                containsDreiKey = true;
+                break;
+            }
+        }
+
+        boolean containsDreiValue = false;
+        for (Integer value : hashMap.values()) {
+            if (value != null && value == 3) {
+                containsDreiValue = true;
+                break;
+            }
+        }
+
+        hashMap.forEach((key, value) -> {
+            hashMap.put(key, ++value); // überschreibt alle Werte mit dem Value + 1
+        });
     }
 }
