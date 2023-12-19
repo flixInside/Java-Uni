@@ -19,6 +19,7 @@ import java.util.function.BiConsumer;
  */
 @SuppressWarnings({"unused", "FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection"})
 public class Maps {
+    //TODO print out stuff to show methods working
 
     //declare two Maps with keys from type String and values from type Integer
     private Map<String, Integer> hashMap;
@@ -192,5 +193,9 @@ public class Maps {
         hashMap.forEach((key, value) -> {
             hashMap.put(key, ++value); // überschreibt alle Werte mit dem Value + 1
         });
+    }
+
+    public void computeMethods() {
+        //TODO compute methods
     }
 }
