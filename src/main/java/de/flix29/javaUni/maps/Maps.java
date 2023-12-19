@@ -12,7 +12,7 @@ import java.util.function.BiConsumer;
  *     <li>{@link #checkIfKeyOrValueIsInMap()} überprüfen ob Einträgen in Maps vorhanden sind</li>
  *     <li>{@link #removeEntries()} entfernen von Einträgen aus Maps</li>
  *     <li>{@link #setsFromMaps()} entfernen von Einträgen aus Maps</li>
- *     <li>{@link #forEachMethods()} möglichkeiten Maps zu durchsuchen</li>
+ *     <li>{@link #forEachMethods()} möglichkeiten Maps zu durchlaufen mittels for-Schleifen</li>
  * </ul>
  *
  * @author felix
