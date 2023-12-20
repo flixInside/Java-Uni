@@ -222,7 +222,7 @@ public class Maps {
      * Fall wird der neue Value zurückgegeben.
      */
     public void mergeMethods() {
-        hashMap.merge("drei", 1, Integer::sum);
+        Integer drei = hashMap.merge("drei", 1, Integer::sum);
         hashMap.merge("drei", 1, (value, newValue) -> value + newValue);
     }
 }
