@@ -2,22 +2,24 @@ package de.flix29.javaUni.maps;
 
 import java.util.*;
 import java.util.function.BiConsumer;
+import java.util.function.BiFunction;
 
 /**
  * Diese Klasse zeigte verschiedene Funktionalitäten der Klasse {@link Map}
  * <ul>
- *     <li>{@link #initializeMaps()} initialisierung von Maps</li>
- *     <li>{@link #addEntriesToMap()} einfügen von Einträgen in Maps</li>
- *     <li>{@link #getValuesFromMap()} auslesen von Einträgen aus Maps</li>
- *     <li>{@link #checkIfKeyOrValueIsInMap()} überprüfen ob Einträgen in Maps vorhanden sind</li>
- *     <li>{@link #removeEntries()} entfernen von Einträgen aus Maps</li>
- *     <li>{@link #setsFromMaps()} entfernen von Einträgen aus Maps</li>
- *     <li>{@link #forEachMethods()} möglichkeiten Maps zu durchlaufen mittels for-Schleifen</li>
+ *     <li>{@link #initializeMaps()}, initialisierung von Maps</li>
+ *     <li>{@link #addEntries()}, einfügen von Einträgen in Maps</li>
+ *     <li>{@link #getValues()}, auslesen von Einträgen aus Maps</li>
+ *     <li>{@link #replaceValues()}, ersetzen von Values</li>
+ *     <li>{@link #checkIfKeyOrValueIsInMap()}, überprüfen ob Einträgen in Maps vorhanden sind</li>
+ *     <li>{@link #removeEntries()}, entfernen von Einträgen aus Maps</li>
+ *     <li>{@link #setsFromMaps()}, entfernen von Einträgen aus Maps</li>
+ *     <li>{@link #forEachMethods()}, möglichkeiten Maps zu durchlaufen mittels for-Schleifen</li>
  * </ul>
  *
  * @author felix
  */
-@SuppressWarnings({"unused", "FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection"})
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection", "Convert2MethodRef"})
 public class Maps {
     //TODO print out stuff to show methods working
 
@@ -27,7 +29,7 @@ public class Maps {
 
     public Maps() {
         initializeMaps();
-        addEntriesToMap();
+        addEntries();
         forEachMethods();
     }
 
@@ -63,7 +65,7 @@ public class Maps {
      *      vorheriger Value existiert.</li>
      * </ul>
      */
-    public void addEntriesToMap() {
+    public void addEntries() {
         //fügt Schlüssel-Werte Paare hinzu
         Integer eins = hashMap.put("eins", 1);
         hashMap.put("zwei", 2);
@@ -84,7 +86,7 @@ public class Maps {
     }
 
     /**
-     * Diese Methode zeigt, wie Werte aus einer Map ausgelesen werden könne.
+     * Diese Methode zeigt, wie Werte aus einer Map ausgelesen werden können.
      * <ul>
      *     <li>Die Methode {@link Map#get(Object)} gibt den Wert, der mit dem, als Parameter übergebenen, Key assoziiert
      *      ist.</li>
@@ -93,13 +95,29 @@ public class Maps {
      *      wird, zurückgegeben.</li>
      * </ul>
      */
-    public void getValuesFromMap() {
+    public void getValues() {
         Integer eins = hashMap.get("eins"); // wird gefunden
         Integer nullValueAsKey = hashMap.get(null); //wird gefunden; null
         Integer nichtGefunden = hashMap.get("abc"); // wird nicht gefunden
 
         // wird nicht gefunden; default value
         Integer nichtGefundenDefault = hashMap.getOrDefault("abc", 1);
+    }
+
+    /**
+     * Diese Methode zeigt, wie Werte in einer Map ersetzt werden können.
+     * <ul>
+     *     <li>Die Methode {@link Map#replace(Object, Object, Object)} bekommt als Parameter den Key und den Value des
+     *      Eintrages der ersetzt werden soll. Wenn dieser Eintrag existiert wird der Value mit dem dritten Parameter
+     *      ersetzt. Die Methode returnt true oder false je nachdem ob der Wert ersetzt wurde oder nicht.</li>
+     *     <li>Die Methode {@link Map#replace(Object, Object)} bekommt als Parameter den Key des Eintrages der ersetzt
+     *      werden soll. Wenn dieser Eintrag existiert wird der Value mit dem zweiten Parameter ersetzt. Die Methode
+     *      returnt den alten Wert des Eintrages.</li>
+     * </ul>
+     */
+    public void replaceValues() {
+        boolean vier = hashMap.replace("vier", 4, 5);
+        Integer drei = hashMap.replace("drei", 4);
     }
 
     /**
@@ -195,7 +213,16 @@ public class Maps {
         });
     }
 
-    public void computeMethods() {
-        //TODO compute methods
+    /**
+     * Diese Methode zeigt, wie die {@link Map#merge(Object, Object, BiFunction)} Methode funktioniert. Sie bekommt als
+     * Input den Key eines Entries der Map und einem Value. Wenn der Key nicht in der Map vorhanden ist, wird er gemeinsam
+     * mit dem Value als neuer Entry in die Map eingefügt. Wenn der Key in der Map vorhanden ist, wird die, als dritter
+     * Parameter, übergebene Funktion auf den alten Value und den übergebenen Value angewendet. Ist das Ergebnis der Funktion
+     * null, wird der Entry aus der Map gelöscht. Andernfalls wird der alte Value mit dem neuen überschrieben. In jedem
+     * Fall wird der neue Value zurückgegeben.
+     */
+    public void mergeMethods() {
+        hashMap.merge("drei", 1, Integer::sum);
+        hashMap.merge("drei", 1, (value, newValue) -> value + newValue);
     }
 }
