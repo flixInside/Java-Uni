@@ -29,9 +29,7 @@ public class Maps {
     private Map<String, Integer> treeMap;
 
     public Maps() {
-        initializeMaps();
-        addEntries();
-        computeMethods();
+
     }
 
     /**
@@ -245,5 +243,23 @@ public class Maps {
        hashMap.compute("zwei", (key, value) -> ++value);
        hashMap.putIfAbsent("zwei", 2);
        hashMap.computeIfPresent("zwei", (key, value) -> ++value);
+    }
+
+    private void setUpMap() {
+        Map<String, Integer> map =  Map.ofEntries(
+                Map.entry("eins", 1),
+                Map.entry("zwei", 2),
+                Map.entry("drei", 3),
+                Map.entry("vier", 4),
+                Map.entry("fünf", 5),
+                Map.entry("sechs", 6)
+        );
+        hashMap = new HashMap<>(map);
+        treeMap = new TreeMap<>(map);
+    }
+
+    private void cleanUpMap() {
+        hashMap.clear();
+        treeMap.clear();
     }
 }
