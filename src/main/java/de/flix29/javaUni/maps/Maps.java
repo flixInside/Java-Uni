@@ -3,6 +3,7 @@ package de.flix29.javaUni.maps;
 import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 /**
  * Diese Klasse zeigte verschiedene Funktionalitäten der Klasse {@link Map}
@@ -19,7 +20,7 @@ import java.util.function.BiFunction;
  *
  * @author felix
  */
-@SuppressWarnings({"unused", "FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection", "Convert2MethodRef"})
+@SuppressWarnings({"unused", "FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection", "Convert2MethodRef", "UnusedAssignment", "ConstantConditions"})
 public class Maps {
     //TODO print out stuff to show methods working
 
@@ -30,7 +31,7 @@ public class Maps {
     public Maps() {
         initializeMaps();
         addEntries();
-        forEachMethods();
+        computeMethods();
     }
 
     /**
@@ -224,5 +225,25 @@ public class Maps {
     public void mergeMethods() {
         Integer drei = hashMap.merge("drei", 1, Integer::sum);
         hashMap.merge("drei", 1, (value, newValue) -> value + newValue);
+    }
+
+    /**
+     * Diese Methode zeigt, wie compute-Methoden der Klasse {@link Map} funktionieren.
+     * <ul>
+     *     <li>Die Methode {@link Map#compute(Object, BiFunction)} bekommt als Parameter den Key und eine Funktion, die
+     *      den key und value verarbeitet und einen neuen Value returnt. Ist der neue Value null wird der Eintrag entfernt
+     *      und null returnt. Ist der neue Value nicht null wird er eingefügt oder geupdatet und returnt.</li>
+     *     <li>Die Methode {@link Map#computeIfAbsent(Object, Function)} funktioniert genauso wie die
+     *      {@link Map#compute(Object, BiFunction)} nur dass sie nur ausgeführt wird, wenn der Key noch nicht in der Map
+     *      vorhanden ist oder einen null Value hat.</li>
+     *     <li>Die Methode {@link Map#computeIfAbsent(Object, Function)} funktioniert genauso wie die
+     *      {@link Map#compute(Object, BiFunction)} nur dass sie nur ausgeführt wird, wenn der Key in der Map
+     *      vorhanden ist und einen nicht null Value hat.</li>
+     * </ul>
+     */
+    public void computeMethods() {
+       hashMap.compute("zwei", (key, value) -> ++value);
+       hashMap.putIfAbsent("zwei", 2);
+       hashMap.computeIfPresent("zwei", (key, value) -> ++value);
     }
 }
