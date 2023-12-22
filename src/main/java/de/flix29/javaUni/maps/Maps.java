@@ -48,6 +48,8 @@ public class Maps {
 
         Map<?, ?> tempHashMap = new HashMap<>(hashMap);
         Map<?, ?> tempTreeMap = new TreeMap<>(hashMap);
+
+        cleanUpMap();
     }
 
     /**
@@ -65,6 +67,8 @@ public class Maps {
      * </ul>
      */
     public void addEntries() {
+        setUpMap();
+
         //fügt Schlüssel-Werte Paare hinzu
         Integer eins = hashMap.put("eins", 1);
         hashMap.put("zwei", 2);
@@ -82,6 +86,8 @@ public class Maps {
         //fügt Paare nur hinzu, wenn der Schlüssel noch nicht vorhanden ist
         hashMap.putIfAbsent("vier", 5); // wird nicht hinzugefügt
         Integer sechs = hashMap.putIfAbsent("sechs", 6);// wird hinzugefügt
+
+        cleanUpMap();
     }
 
     /**
@@ -95,12 +101,16 @@ public class Maps {
      * </ul>
      */
     public void getValues() {
+        setUpMap();
+
         Integer eins = hashMap.get("eins"); // wird gefunden
         Integer nullValueAsKey = hashMap.get(null); //wird gefunden; null
         Integer nichtGefunden = hashMap.get("abc"); // wird nicht gefunden
 
         // wird nicht gefunden; default value
         Integer nichtGefundenDefault = hashMap.getOrDefault("abc", 1);
+
+        cleanUpMap();
     }
 
     /**
@@ -115,8 +125,12 @@ public class Maps {
      * </ul>
      */
     public void replaceValues() {
+        setUpMap();
+
         boolean vier = hashMap.replace("vier", 4, 5);
         Integer drei = hashMap.replace("drei", 4);
+
+        cleanUpMap();
     }
 
     /**
@@ -129,11 +143,15 @@ public class Maps {
      * </ul>
      */
     public void checkIfKeyOrValueIsInMap() {
+        setUpMap();
+
         boolean eins = hashMap.containsKey("eins"); //true
         boolean nichtInMap = hashMap.containsKey("abc"); //false
 
         boolean zwei = hashMap.containsValue(2); //true
         boolean valueNichtInMap = hashMap.containsValue(9); //false
+
+        cleanUpMap();
     }
 
     /**
@@ -145,12 +163,16 @@ public class Maps {
      * </ul>
      */
     public void removeEntries() {
+        setUpMap();
+
         // entfernt den Eintrag mit dem Key eins und returnt den Value
         Integer eins = hashMap.remove(null);
         // tut nichts und returnt null
         Integer nichtGefunden = hashMap.remove("abc");
 
         hashMap.clear(); // löscht alle Einträge
+
+        cleanUpMap();
     }
 
     /**
@@ -164,12 +186,16 @@ public class Maps {
      * </ul>
      */
     public void setsFromMaps() {
+        setUpMap();
+
         //set mit entries aus der Map
         Set<Map.Entry<String, Integer>> entries = hashMap.entrySet();
         //set mit Keys aus der Map
         Set<String> strings = hashMap.keySet();
         //collection mit values aus der Map
         Collection<Integer> values = hashMap.values();
+
+        cleanUpMap();
     }
 
     /**
@@ -183,6 +209,8 @@ public class Maps {
      * </ul>
      */
     public void forEachMethods() {
+        setUpMap();
+
         for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
@@ -210,6 +238,8 @@ public class Maps {
         hashMap.forEach((key, value) -> {
             hashMap.put(key, ++value); // überschreibt alle Werte mit dem Value + 1
         });
+
+        cleanUpMap();
     }
 
     /**
@@ -221,8 +251,12 @@ public class Maps {
      * Fall wird der neue Value zurückgegeben.
      */
     public void mergeMethods() {
+        setUpMap();
+
         Integer drei = hashMap.merge("drei", 1, Integer::sum);
         hashMap.merge("drei", 1, (value, newValue) -> value + newValue);
+
+        cleanUpMap();
     }
 
     /**
@@ -240,9 +274,13 @@ public class Maps {
      * </ul>
      */
     public void computeMethods() {
+        setUpMap();
+
        hashMap.compute("zwei", (key, value) -> ++value);
        hashMap.putIfAbsent("zwei", 2);
        hashMap.computeIfPresent("zwei", (key, value) -> ++value);
+
+       cleanUpMap();
     }
 
     private void setUpMap() {
