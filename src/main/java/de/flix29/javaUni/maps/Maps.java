@@ -214,7 +214,7 @@ public class Maps {
         for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
             String key = entry.getKey();
             Integer value = entry.getValue();
-            if(key != null && key.equals("eins")) {
+            if (key != null && key.equals("eins")) {
                 entry.setValue(2); //setzt den Value vom Key 'eins' zu 2
             }
         }
@@ -276,15 +276,15 @@ public class Maps {
     public void computeMethods() {
         setUpMap();
 
-       hashMap.compute("zwei", (key, value) -> ++value);
-       hashMap.putIfAbsent("zwei", 2);
-       hashMap.computeIfPresent("zwei", (key, value) -> ++value);
+        hashMap.compute("zwei", (key, value) -> ++value);
+        hashMap.putIfAbsent("zwei", 2);
+        hashMap.computeIfPresent("zwei", (key, value) -> ++value);
 
-       cleanUpMap();
+        cleanUpMap();
     }
 
     private void setUpMap() {
-        Map<String, Integer> map =  Map.ofEntries(
+        Map<String, Integer> map = Map.ofEntries(
                 Map.entry("eins", 1),
                 Map.entry("zwei", 2),
                 Map.entry("drei", 3),
