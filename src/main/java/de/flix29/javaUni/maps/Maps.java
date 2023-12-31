@@ -277,7 +277,7 @@ public class Maps {
         setUpMap();
 
         hashMap.compute("zwei", (key, value) -> ++value);
-        hashMap.putIfAbsent("zwei", 2);
+        hashMap.computeIfAbsent("zwei", key -> Integer.valueOf(key));
         hashMap.computeIfPresent("zwei", (key, value) -> ++value);
 
         cleanUpMap();
