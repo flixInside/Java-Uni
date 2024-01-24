@@ -22,8 +22,6 @@ import java.util.function.Function;
  */
 @SuppressWarnings({"unused", "FieldCanBeLocal", "MismatchedQueryAndUpdateOfCollection", "Convert2MethodRef", "UnusedAssignment", "ConstantConditions"})
 public class Maps {
-    //TODO print out stuff to show methods working
-
     //declare two Maps with keys from type String and values from type Integer
     private Map<String, Integer> hashMap;
     private Map<String, Integer> treeMap;
