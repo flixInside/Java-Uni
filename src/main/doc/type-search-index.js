@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"de.flix29.javaUni.maps","l":"Maps"}];updateSearchResults();
